@@ -1,0 +1,40 @@
+{
+  "name": "image-gallery",
+  "version": "1.0.0",
+  "description": "React image gallery module",
+  "license": "MIT",
+  "author": "Quentin Sautière (SautiereQDev)",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "storybook": "storybook dev -p 6006",
+    "test": "test-storybook --coverage --watchAll --testTimeout=5000 --verbose",
+    "build-storybook": "storybook build"
+  },
+  "devDependencies": {
+    "@chromatic-com/storybook": "^3.2.4",
+    "@playwright/test": "^1.50.1",
+    "@storybook/addon-a11y": "^8.5.2",
+    "@storybook/addon-designs": "^8.1.0",
+    "@storybook/addon-essentials": "^8.5.2",
+    "@storybook/addon-interactions": "^8.5.2",
+    "@storybook/addon-onboarding": "^8.5.2",
+    "@storybook/addon-viewport": "^8.5.2",
+    "@storybook/blocks": "^8.5.2",
+    "@storybook/react": "^8.5.2",
+    "@storybook/react-vite": "^8.5.2",
+    "@storybook/test": "^8.5.2",
+    "@storybook/test-runner": "^0.21.0",
+    "@testing-library/react": "^16.2.0",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "prop-types": "^15.8.1",
+    "storybook": "^8.5.2",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}
