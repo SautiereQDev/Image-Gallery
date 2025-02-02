@@ -13,7 +13,7 @@ type Story = StoryObj<typeof ImageGallery>;
 
 export const Primary = {
 	args: {
-		images: [
+		imgSources: [
 			"https://via.placeholder.com/150",
 			"https://via.placeholder.com/150",
 		],

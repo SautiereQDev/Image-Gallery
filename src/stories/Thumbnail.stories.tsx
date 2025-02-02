@@ -1,8 +1,8 @@
-import Thumbnail from "../components/Thumbnail";
-import {ComponentProps} from "react";
-import {Meta, StoryObj} from "@storybook/react";
-import {within, expect} from "@storybook/test";
-import images from "../mocks/images";
+import Thumbnail from '../components/Thumbnail';
+import { ComponentProps } from 'react';
+import { Meta, StoryObj } from '@storybook/react';
+import { expect, within } from '@storybook/test';
+import images from '../mocks/images';
 
 const meta = {
 	component: Thumbnail,
@@ -12,24 +12,23 @@ export default meta;
 
 type Story = StoryObj<typeof Thumbnail>;
 
-export const Primary: Story = {
+export const Default: Story = {
 	args: {
-		src: images[0],
-		alt: "Thumbnail image",
+		src: images[0].src,
+		alt: images[0].alt,
 		width: 300,
-		height: 100,
-		unit: "px"
+		unit: 'px',
 	},
-	play: async ({canvasElement, step}) => {
+	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement);
-		const image = canvas.getByRole("img");
-		await step("Thumbnail is rendered", () => {
+		const image = canvas.getByRole('img');
+		await step('Thumbnail is rendered', () => {
 			expect(image).not.toBeNull();
 		});
-		await step("Verification des dimensions", () => {
+		await step('Verification des dimensions', () => {
 			expect(image).toHaveStyle({
-				width: "300px",
+				width: '300px',
 			});
 		});
-	}
-}
+	},
+};

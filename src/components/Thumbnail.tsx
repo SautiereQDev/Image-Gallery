@@ -1,5 +1,4 @@
-import React from 'react'
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export type IThumbnailProps = {
 	src: string;
@@ -11,43 +10,68 @@ export type IThumbnailProps = {
 	borderColor?: string;
 	fit?: 'cover' | 'contain';
 	borderStyle?: 'solid' | 'dashed' | 'dotted';
-	unit: 'px' | 'viewport_ratio' | 'rem'
+	unit?: 'px' | 'viewport_ratio' | 'rem'
+}
+
+type StyledButtonProps = {
+	border?: number;
+	borderRadius?: number;
+	borderColor?: string;
+	borderStyle?: 'solid' | 'dashed' | 'dotted';
+}
+
+type StyledImageProps = {
+	width?: number;
+	height?: number;
+	unit?: 'px' | 'viewport_ratio' | 'rem'
+	fit?: 'cover' | 'contain';
 }
 
 const getUnitWidth = (unit?: 'px' | 'viewport_ratio' | 'rem') => {
 	switch (unit) {
 		case 'viewport_ratio':
-			return 'vw'
+			return 'vw';
 		case 'rem':
-			return 'rem'
+			return 'rem';
 		default:
-			return 'px'
+			return 'px';
 	}
-}
+};
 
 const getUnitHeight = (unit?: 'px' | 'viewport_ratio' | 'rem') => {
 	switch (unit) {
 		case 'viewport_ratio':
-			return 'vh'
+			return 'vh';
 		case 'rem':
-			return 'rem'
+			return 'rem';
 		default:
-			return 'px'
+			return 'px';
 	}
-}
+};
 
-const StyledImage = styled.img<IThumbnailProps>`
-    width: ${props => props.width ? `${props.width}${getUnitWidth(props.unit)}` : (!props.height ? `12.5${getUnitWidth(props.unit)}` : 'auto')};
-    height: ${props => !props.width ? (props.height ? `${props.height}${getUnitHeight(props.unit)}` : `15${getUnitHeight(props.unit)}`) : 'auto'};
+const StyledButton = styled.button<StyledButtonProps>`
+
     border: ${props => props.border || 1}px ${props => props.borderStyle || 'solid'} ${props => props.borderColor || 'black'};
-    object-fit: ${props => props.fit || 'cover'};
     border-radius: ${props => props.borderRadius || 5}px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0;
+`;
+
+const StyledImage = styled.img <StyledImageProps>`
+    width: ${props => props.width ? `${props.width}${getUnitWidth(props.unit)}` : '10vw'};
+    height: ${props => props.height ? `${props.height}${getUnitHeight(props.unit)}` : '10vh'};
+    object-fit: ${props => props.fit || 'cover'};
 `;
 
 export function Thumbnail(args: IThumbnailProps) {
 	return (
-		<StyledImage {...args}/>
-	)
+		// lors du click:  changer l'image principale
+		<StyledButton {...args}>
+			<StyledImage {...args} />
+		</StyledButton>
+	);
 }
 
-export default Thumbnail
+export default Thumbnail;

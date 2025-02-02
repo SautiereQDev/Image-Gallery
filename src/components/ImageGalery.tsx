@@ -1,14 +1,16 @@
-import React from "react";
+import React from 'react';
 
 type ImageGalleryProps = {
-	images: string[];
+	imgSources: string[];
 	altText?: string;
 };
 
-export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, altText = "Gallery image" }) => {
+// utiliser un provider pour gérer globalement le changement des images principales et sur les vignettes
+
+export const ImageGallery: React.FC<ImageGalleryProps> = ({ imgSources, altText = 'Gallery image' }) => {
 	return (
 		<div className="image-gallery">
-			{images.map((src, index) => (
+			{imgSources.map((src, index) => (
 				<img key={index} src={src} alt={`${altText} ${index}`} className="gallery-image" />
 			))}
 		</div>

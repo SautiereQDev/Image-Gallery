@@ -11,7 +11,8 @@
     "storybook": "storybook dev -p 6006",
     "test": "test-storybook --coverage --watchAll --testTimeout=5000 --verbose",
     "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token=chpt_64eba08fdfda4b0"
+    "chromatic": "npx chromatic --project-token=chpt_64eba08fdfda4b0",
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\""
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.4",
@@ -31,6 +32,17 @@
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@types/styled-components": "^5.1.34",
+    "@typescript-eslint/eslint-plugin": "^8.22.0",
+    "@typescript-eslint/parser": "^8.22.0",
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^18.0.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-prettier": "^5.2.3",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "prettier": "^3.4.2",
     "prop-types": "^15.8.1",
     "storybook": "^8.5.3",
     "typescript": "^5.7.3",
