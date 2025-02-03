@@ -5,15 +5,11 @@ type ImageGalleryProps = {
 	altText?: string;
 };
 
-// utiliser un provider pour gérer globalement le changement des images principales et sur les vignettes
+// utiliser un context pour gérer les images principales et les vignettes
 
 export const ImageGallery: React.FC<ImageGalleryProps> = ({ imgSources, altText = 'Gallery image' }) => {
 	return (
-		<div className="image-gallery">
-			{imgSources.map((src, index) => (
-				<img key={index} src={src} alt={`${altText} ${index}`} className="gallery-image" />
-			))}
-		</div>
+		<></>
 	);
 };
 

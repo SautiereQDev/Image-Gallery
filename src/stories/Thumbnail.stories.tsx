@@ -17,6 +17,7 @@ export const Default: Story = {
 		src: images[0].src,
 		alt: images[0].alt,
 		width: 300,
+		height: 300,
 		unit: 'px',
 	},
 	play: async ({ canvasElement, step }) => {

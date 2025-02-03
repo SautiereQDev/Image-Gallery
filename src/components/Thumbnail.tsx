@@ -27,7 +27,7 @@ type StyledImageProps = {
 	fit?: 'cover' | 'contain';
 }
 
-const getUnitWidth = (unit?: 'px' | 'viewport_ratio' | 'rem') => {
+export const getUnitWidth = (unit?: 'px' | 'viewport_ratio' | 'rem') => {
 	switch (unit) {
 		case 'viewport_ratio':
 			return 'vw';
@@ -38,7 +38,7 @@ const getUnitWidth = (unit?: 'px' | 'viewport_ratio' | 'rem') => {
 	}
 };
 
-const getUnitHeight = (unit?: 'px' | 'viewport_ratio' | 'rem') => {
+export const getUnitHeight = (unit?: 'px' | 'viewport_ratio' | 'rem') => {
 	switch (unit) {
 		case 'viewport_ratio':
 			return 'vh';
