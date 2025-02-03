@@ -8,8 +8,19 @@
     "skipLibCheck": true,
     "target": "ESNext",
     "module": "ESNext",
-    "--lib": ["esnext", "dom", "dom.iterable", "scriptHost"]
+    "--lib": ["esnext", "dom", "dom.iterable", "scriptHost"],
+    "outDir": "dist",
+    "declarationDir": "dist/types",
+    "declaration": true,
+    "forceConsistentCasingInFileNames": true,
+    "emitDeclarationOnly": false
   },
-  "include": ["src", ".storybook"],  // Ajoute Storybook dans le scope
-  "exclude": ["node_modules", "dist"],
+  "include": [
+    "src",
+    ".storybook",
+    "node_modules/vitest/globals.d.ts",
+    "node_modules/vitest/globals.d.ts"
+  ],
+  // Ajoute Storybook dans le scope
+  "exclude": ["node_modules", "dist"]
 }
