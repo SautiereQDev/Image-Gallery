@@ -1,37 +1,37 @@
-name: Deploy Storybook to GitHub Pages
+name: Deploy Storybook
 
 on:
   push:
     branches:
-      - main
+      - main  # Déclenche le workflow à chaque push sur la branche 'main'
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Récupère le code de votre dépôt
+      # Étape 1 : Récupère le code source du dépôt
       - name: Check out repository
         uses: actions/checkout@v3
 
-      # 2. Installe la version de Node.js souhaitée
+      # Étape 2 : Installe Node.js (ajustez la version si nécessaire)
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16  # ou la version que vous utilisez
+          node-version: 16
 
-      # 3. Installe vos dépendances
+      # Étape 3 : Installe les dépendances du projet
       - name: Install dependencies
         run: npm ci
 
-      # 4. Build votre Storybook
+      # Étape 4 : Construit Storybook, ce qui crée le dossier `storybook-static`
       - name: Build Storybook
         run: npm run build-storybook
 
-      # 5. Déploie le contenu du dossier `storybook-static` sur la branche gh-pages
+      # Étape 5 : Déploie le dossier `storybook-static` sur la branche gh-pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./storybook-static
+          publish_dir: './storybook-static'
           publish_branch: gh-pages
