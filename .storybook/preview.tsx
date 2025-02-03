@@ -1,6 +1,7 @@
 // .storybook/preview.tsx
 import { Preview } from '@storybook/react';
-import Reset from '../src/styles/reset';
+import { Reset } from '../src/styles/reset';
+import { Analytics } from '@vercel/analytics/react';
 
 /** @type { import('@storybook/react').Preview } */
 const preview: Preview = {
@@ -14,6 +15,7 @@ const preview: Preview = {
 		decorators: [
 			(Story: any) => (
 				<>
+					<Analytics />
 					<Reset />
 					<Story />
 				</>
