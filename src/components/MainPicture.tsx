@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import { getUnitWidth, IThumbnailProps, Thumbnail } from './Thumbnail';
-
-export interface IMainPictureProps extends IThumbnailProps {
-}
+import { getUnitWidth, Thumbnail } from './Thumbnail';
+import { IMainPictureProps } from '../interfaces/mainPicture';
+import { useGallery } from '../hooks/useGallery';
 
 const Container = styled.div<{ width: number, height: number, unit: 'px' | 'viewport_ratio' | 'rem' }>`
     position: relative;
@@ -13,35 +12,33 @@ const Container = styled.div<{ width: number, height: number, unit: 'px' | 'view
     height: ${props => props.height}${props => getUnitWidth(props.unit)};
 `;
 
-const ButtonLeft = styled.button`
+const button = styled.button`
     position: absolute;
     top: 50%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+`;
+
+const ButtonLeft = styled(button)`
     left: 10px;
-    transform: translateY(-50%);
-    background: transparent;
-    border: none;
-    cursor: pointer;
 `;
 
-const ButtonRight = styled.button`
-    position: absolute;
-    top: 50%;
+const ButtonRight = styled(button)`
     right: 10px;
-    transform: translateY(-50%);
-    background: transparent;
-    border: none;
-    cursor: pointer;
 `;
 
-export const MainPicture = (args: IMainPictureProps) => {
+
+export const MainPicture = ({ buttonColor = '#FFF', buttonSize = 30, ...args }: IMainPictureProps) => {
+	const { activeImage } = useGallery();
 	return (
 		<Container width={args.width ?? 100} height={args.height ?? 100} unit={args.unit ?? 'viewport_ratio'}>
 			<ButtonLeft>
-				<FaChevronLeft size={30} color="orange" />
+				<FaChevronLeft size={buttonSize} color={buttonColor} />
 			</ButtonLeft>
-			<Thumbnail {...args} />
+			<Thumbnail src={activeImage.src} alt={activeImage.src} {...args} />
 			<ButtonRight>
-				<FaChevronRight size={30} color="orange" />
+				<FaChevronRight size={buttonSize} color={buttonColor} />
 			</ButtonRight>
 		</Container>
 	);
