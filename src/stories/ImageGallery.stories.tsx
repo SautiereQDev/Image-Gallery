@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { ImageGallery } from '../components/ImageGalery';
 import { expect, within } from '@storybook/test';
 import { ComponentProps } from 'react';
+import images from '../mocks/images';
 
 const meta = {
 	component: ImageGallery,
@@ -13,11 +14,7 @@ type Story = StoryObj<typeof ImageGallery>;
 
 export const Default = {
 	args: {
-		imgSources: [
-			'https://via.placeholder.com/150',
-			'https://via.placeholder.com/150',
-		],
-		altText: 'Gallery image',
+		images: images,
 	},
 	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement);

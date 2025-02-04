@@ -1,15 +1,16 @@
 import React from 'react';
+import MainPicture from './MainPicture';
+import ThumbnailNavigator from './ThumbnailNavigator';
+import { GalleryProps } from '../interfaces/imageGallery';
+import { GalleryProvider } from '../contexts/ImageGalleryContext';
 
-type ImageGalleryProps = {
-	imgSources: string[];
-	altText?: string;
-};
+export const ImageGallery: React.FC<GalleryProps> = ({ images, defaultImage = images[0] }: GalleryProps) => {
 
-// utiliser un context pour gérer les images principales et les vignettes
-
-export const ImageGallery: React.FC<ImageGalleryProps> = ({ imgSources, altText = 'Gallery image' }) => {
 	return (
-		<></>
+		<GalleryProvider initialImages={images} activeImage={defaultImage}>
+			<MainPicture />
+			<ThumbnailNavigator />
+		</GalleryProvider>
 	);
 };
 

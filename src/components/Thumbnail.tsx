@@ -1,17 +1,5 @@
 import styled from 'styled-components';
-
-export type IThumbnailProps = {
-	src: string;
-	alt: string;
-	width?: number;
-	height?: number;
-	border?: number;
-	borderRadius?: number;
-	borderColor?: string;
-	fit?: 'cover' | 'contain';
-	borderStyle?: 'solid' | 'dashed' | 'dotted';
-	unit?: 'px' | 'viewport_ratio' | 'rem'
-}
+import { IThumbnailProps } from '../interfaces/thumbnail';
 
 type StyledButtonProps = {
 	border?: number;

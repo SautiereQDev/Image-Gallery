@@ -1,9 +1,7 @@
-// .storybook/preview.tsx
-import { Preview } from '@storybook/react';
-import { Reset } from '../src/styles/reset';
 import { Analytics } from '@vercel/analytics/react';
+import Reset from '../src/styles/reset';
+import { Preview } from '@storybook/react';
 
-/** @type { import('@storybook/react').Preview } */
 const preview: Preview = {
 	parameters: {
 		controls: {

@@ -1,17 +1,9 @@
 import React from 'react';
 import Thumbnail from './Thumbnail';
 import styled from 'styled-components';
+import { useGallery } from '../hooks/useGallery';
+import { IThumbnailNavigatorProps } from '../interfaces/thumbnailNavgiator';
 
-export type IThumbnailNavigatorProps = {
-	images: { src: string, alt: string }[] | { src: string }[];
-	defaultAlt?: string;
-	direction?: 'vertical' | 'horizontal';
-	nbImagesVisible?: number;
-	autoScroll?: boolean;
-	autoScrollDelay?: number;
-	activeImageScr: string;
-	gap?: number;
-}
 
 const StyledThumbnailNavigator = styled.div<{ direction: 'vertical' | 'horizontal', gap?: number }>`
     display: flex;
@@ -21,24 +13,23 @@ const StyledThumbnailNavigator = styled.div<{ direction: 'vertical' | 'horizonta
 `;
 
 const ThumbnailNavigator = ({
-															images,
 															direction = 'horizontal',
 															nbImagesVisible = 5,
 															autoScroll = false,
 															autoScrollDelay = 5000,
-															activeImageScr,
-															defaultAlt = 'Gallery image',
 														}: Readonly<IThumbnailNavigatorProps>) => {
 
+	const { thumbnailImages, activeImage } = useGallery();
+
 	// on retire l'image active des images à afficher
-	const filteredImagesSources = images.filter((image) => image.src !== activeImageScr).slice(0, nbImagesVisible);
+	const filteredImagesSources = thumbnailImages.filter((image) => image.src !== activeImage.src).slice(0, nbImagesVisible);
 
 	return (
 		<StyledThumbnailNavigator direction={direction} gap={10}>
 			<ul>
 				{filteredImagesSources.map((image, index) => (
 					<li key={index}>
-						<Thumbnail src={image.src} alt={'alt' in image ? image.alt as string : defaultAlt as string}
+						<Thumbnail src={thumbnailImages[index].src} alt={thumbnailImages[index].src}
 											 unit={'viewport_ratio'} />
 					</li>
 				))}
