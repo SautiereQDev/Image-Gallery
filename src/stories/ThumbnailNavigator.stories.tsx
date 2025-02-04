@@ -3,6 +3,7 @@ import { ComponentProps } from 'react';
 import { expect, within } from '@storybook/test';
 import ThumbnailNavigator from '../components/ThumbnailNavigator';
 import imagesSources from '../mocks/images';
+import { GalleryProvider } from '../contexts/ImageGalleryContext';
 import Reset from '../styles/reset';
 
 const meta = {
@@ -14,16 +15,12 @@ export default meta;
 type Story = StoryObj<typeof ThumbnailNavigator>;
 
 export const Default: Story = {
+	render: (args) => <GalleryProvider initialImages={imagesSources}
+																		 activeImage={imagesSources[0]}><Reset /><ThumbnailNavigator {...args} /></GalleryProvider>,
 	args: {
-		images: imagesSources,
 		direction: 'horizontal',
 		nbImagesVisible: 5,
-		activeImageScr: imagesSources[0].src,
 	},
-	render: (args) => <>
-		<Reset />
-		<ThumbnailNavigator {...args} />
-	</>,
 	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement);
 		const images = canvas.getAllByRole('img');
