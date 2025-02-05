@@ -1,43 +1,33 @@
 import { GalleryState } from '../interfaces/imageGallery';
 import { GalleryAction } from '../types/ImageGallery.types';
+import { getThumbnailImages } from '../hooks/useThumbnailImages';
 
 export const galleryReducer = (
 	state: GalleryState,
 	action: GalleryAction,
 ): GalleryState => {
+
 	switch (action.type) {
+		case 'NEXT_ACTIVE_IMAGE':
+			const nextIndex = (state.activeImage + 1) % state.storedImages.length;
+			return {
+				...state,
+				activeImage: nextIndex,
+				thumbnailImages: getThumbnailImages(state.storedImages, nextIndex, state.thumbnailSize),
+			};
+		case 'PREVIOUS_ACTIVE_IMAGE':
+			const prevIndex = (state.activeImage - 1 + state.storedImages.length) % state.storedImages.length;
+			return {
+				...state,
+				activeImage: prevIndex,
+				thumbnailImages: getThumbnailImages(state.storedImages, prevIndex, state.thumbnailSize),
+			};
 		case 'SET_ACTIVE_IMAGE':
-			// Met à jour l'image active
-			return { ...state, activeImage: action.payload };
-
-		case 'SET_THUMBNAIL_IMAGES':
-			// Met à jour la liste des images affichées dans la thumbnail gallery
-			return { ...state, thumbnailImages: action.payload };
-
-		case 'ADD_IMAGE':
-			// Ajoute une image à la collection stockée
 			return {
 				...state,
-				storedImages: [...state.storedImages, action.payload],
+				activeImage: action.payload,
+				thumbnailImages: getThumbnailImages(state.storedImages, action.payload, state.thumbnailSize),
 			};
-
-		case 'REMOVE_IMAGE':
-			// Supprime une image de la collection stockée
-			// Vous pourrez aussi recalculer asideImages et activeImage si besoin
-			return {
-				...state,
-				storedImages: state.storedImages.filter(img => img !== action.payload),
-			};
-
-		case 'SET_STORED_IMAGES':
-			// Définit l'ensemble des images stockées, et par exemple,
-			// met l'image active à la première image si elle n'est pas encore définie
-			return {
-				...state,
-				storedImages: action.payload,
-				activeImage: action.payload[0] ?? '',
-			};
-
 		default:
 			return state;
 	}

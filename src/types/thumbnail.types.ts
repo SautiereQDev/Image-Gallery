@@ -1,4 +1,6 @@
-export type IThumbnailProps = {
+import { MouseEventHandler } from 'react';
+
+export type ThumbnailProps = {
 	src: string;
 	alt: string;
 	width?: number;
@@ -8,5 +10,6 @@ export type IThumbnailProps = {
 	borderColor?: string;
 	fit?: 'cover' | 'contain';
 	borderStyle?: 'solid' | 'dashed' | 'dotted';
-	unit?: 'px' | 'viewport_ratio' | 'rem'
+	unit?: 'px' | 'viewport_ratio' | 'rem' | '%';
+	onClick?: MouseEventHandler;
 }

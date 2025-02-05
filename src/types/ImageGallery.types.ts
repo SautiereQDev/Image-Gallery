@@ -2,12 +2,10 @@ import { CommonTypes } from './commons';
 
 export interface ImageGalleryState {
 	images: CommonTypes.Image[];
-	selectedImage: CommonTypes.Image;
+	activeImage: CommonTypes.Image;
 }
 
 export type GalleryAction =
-	| { type: 'SET_ACTIVE_IMAGE'; payload: CommonTypes.Image }
-	| { type: 'SET_THUMBNAIL_IMAGES'; payload: CommonTypes.Image[] }
-	| { type: 'ADD_IMAGE'; payload: CommonTypes.Image }
-	| { type: 'REMOVE_IMAGE'; payload: CommonTypes.Image }
-	| { type: 'SET_STORED_IMAGES'; payload: CommonTypes.Image[] };
+	| { type: 'NEXT_ACTIVE_IMAGE' }
+	| { type: 'PREVIOUS_ACTIVE_IMAGE' }
+	| { type: 'SET_ACTIVE_IMAGE', payload: number }

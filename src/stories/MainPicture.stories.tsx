@@ -14,8 +14,7 @@ export default meta;
 type Story = StoryObj<typeof MainPicture>;
 
 export const Default = {
-	render: (args) => <GalleryProvider initialImages={images}
-																		 activeImage={images[0]}><MainPicture {...args} /></GalleryProvider>,
+	render: (args) => <GalleryProvider storedImages={images}><MainPicture {...args} /></GalleryProvider>,
 	args: {
 		width: 300,
 		height: 300,
@@ -27,7 +26,7 @@ export const Default = {
 
 		await step('Verification du rendu', () => {
 			expect(buttons).toHaveLength(2);
-			expect(buttons[0]).toHaveStyle({ color: '#FFF' });
+			expect(buttons[0]).toHaveStyle({ color: '#000' });
 
 		});
 

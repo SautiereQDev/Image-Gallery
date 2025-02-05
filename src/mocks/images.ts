@@ -24,7 +24,22 @@ export const images = [
 		src: 'https://plus.unsplash.com/premium_photo-1669829646756-083a328c0abb?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bGFuZHNjYXBlc3xlbnwwfHwwfHx8MA%3D%3D',
 		alt: 'Image 7',
 	},
-	{ src: 'https://www.vecteezy.com/free-photos/landscape', alt: 'Image 8' },
+	{
+		src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgSVMLJAybwkPi2a8EjrNSjQySErCvnOH1Kg&s',
+		alt: 'Image 8',
+	},
+	{
+		src: 'https://st2.depositphotos.com/1591133/8812/i/450/depositphotos_88120646-stock-photo-idyllic-summer-landscape-with-clear.jpg',
+		alt: 'Image 9',
+	},
+	{
+		src: 'https://www.lapsychoactive.com/wp-content/uploads/2017/12/photo-photo-paysage-libre-de-droit-3.jpg',
+		alt: 'Image 10',
+	},
+	{
+		src: 'https://st.depositphotos.com/1686706/1978/i/450/depositphotos_19781997-stock-photo-hot-air-balloons-floating-up.jpg',
+		alt: 'Image 11',
+	},
 ];
 
 export default images;

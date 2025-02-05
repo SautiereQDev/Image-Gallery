@@ -21,7 +21,7 @@ export const Default = {
 		const images = canvas.getAllByRole('img');
 		await step('Image gallery is rendered', () => {
 			expect(images).not.toBeNull();
-			expect(images).toHaveLength(2);
+			expect(images).toHaveLength(6);
 		});
 	},
 	parameters: {

@@ -1,6 +1,6 @@
-import { IThumbnailProps } from './thumbnail';
+import { ThumbnailProps } from '../types/thumbnail.types';
 
-export interface IMainPictureProps extends Omit<IThumbnailProps, 'src' | 'alt'> {
+export interface IMainPictureProps extends Omit<ThumbnailProps, 'src' | 'alt'> {
 	buttonSize?: number;
 	buttonColor?: string;
 }

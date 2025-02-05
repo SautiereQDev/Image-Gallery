@@ -1,40 +1,31 @@
 import React from 'react';
 import Thumbnail from './Thumbnail';
-import styled from 'styled-components';
 import { useGallery } from '../hooks/useGallery';
-import { IThumbnailNavigatorProps } from '../interfaces/thumbnailNavgiator';
-
-
-const StyledThumbnailNavigator = styled.div<{ direction: 'vertical' | 'horizontal', gap?: number }>`
-    display: flex;
-    overflow: hidden;
-    flex-direction: ${props => props.direction === 'vertical' ? 'column' : 'row'};
-    gap: ${props => props.gap ?? '0'}px;
-`;
+import { IThumbnailNavigatorProps } from '../types/thumbnailNavgiator.types';
+import { StyledElement, StyledList } from '../styles/thumbnailNavigator.styles';
 
 const ThumbnailNavigator = ({
 															direction = 'horizontal',
 															nbImagesVisible = 5,
 															autoScroll = false,
 															autoScrollDelay = 5000,
+															pictureSpacing = 10,
 														}: Readonly<IThumbnailNavigatorProps>) => {
 
-	const { thumbnailImages, activeImage } = useGallery();
-
-	// on retire l'image active des images à afficher
-	const filteredImagesSources = thumbnailImages.filter((image) => image.src !== activeImage.src).slice(0, nbImagesVisible);
+	const { thumbnailImages, activeImage, dispatch } = useGallery();
 
 	return (
-		<StyledThumbnailNavigator direction={direction} gap={10}>
-			<ul>
-				{filteredImagesSources.map((image, index) => (
-					<li key={index}>
-						<Thumbnail src={thumbnailImages[index].src} alt={thumbnailImages[index].src}
-											 unit={'viewport_ratio'} />
-					</li>
-				))}
-			</ul>
-		</StyledThumbnailNavigator>
+		<StyledList direction={direction} gap={pictureSpacing}>
+			{thumbnailImages.map((image, index) => (
+				<StyledElement key={index}>
+					<Thumbnail src={thumbnailImages[index].src} alt={thumbnailImages[index].alt}
+										 unit={'viewport_ratio'} onClick={() => dispatch({
+						type: 'SET_ACTIVE_IMAGE',
+						payload: activeImage + index,
+					})} />
+				</StyledElement>
+			))}
+		</StyledList>
 	);
 };
 
