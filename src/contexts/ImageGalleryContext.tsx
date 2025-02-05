@@ -1,7 +1,6 @@
 import React, { createContext, useMemo, useReducer } from 'react';
 import { GalleryContextData, GalleryProviderProps } from '../interfaces/galleryProvider';
-import { galleryReducer } from '../reducers/imageGalleryReducer';
-import { getThumbnailImages } from '../hooks/useThumbnailImages';
+import { galleryReducer, getThumbnailImages } from '../reducers/imageGalleryReducer';
 
 const GalleryContext = createContext<GalleryContextData | undefined>(undefined);
 
