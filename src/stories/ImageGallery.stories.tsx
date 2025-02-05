@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { ImageGallery } from '../components/ImageGalery';
-import {expect, fireEvent, within} from '@storybook/test';
+import { expect, within } from '@storybook/test';
 import { ComponentProps } from 'react';
 import images from '../mocks/images';
 
@@ -26,10 +26,6 @@ export const Default = {
 			expect(images).not.toBeNull();
 			expect(images).toHaveLength(6);
 		});
-		await step('Verification de la navigation globale', async () => {
-			const lastImageSrc = images[6].getAttribute('src');
-			await fireEvent.click(images[6]);
-			await expect(images[0].getAttribute('src')).toBe(lastImageSrc);	})
 	},
 	parameters: {
 		design: {

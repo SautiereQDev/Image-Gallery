@@ -15,7 +15,7 @@ export const MainPicture = ({
 														}: IMainPictureProps) => {
 	const { activeImage, storedImages, dispatch } = useGallery();
 
-	const setPreviusPicture = () => {
+	const setPreviousPicture = () => {
 		dispatch({ type: 'PREVIOUS_ACTIVE_IMAGE' });
 	};
 	const setNextPicture = () => {
@@ -24,7 +24,7 @@ export const MainPicture = ({
 
 	return (
 		<Container width={width ?? 100} height={height ?? 100} unit={unit ?? 'viewport_ratio'}>
-			<ButtonLeft onClick={setPreviusPicture} aria-label={'Previous image'}>
+			<ButtonLeft onClick={setPreviousPicture} aria-label={'Previous image'}>
 				<FaChevronLeft size={buttonSize} color={buttonColor} />
 			</ButtonLeft>
 			<Thumbnail src={storedImages[activeImage].src} alt={storedImages[activeImage].alt} {...args} width={100}
