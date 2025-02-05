@@ -30,12 +30,14 @@ export const Default = {
 
 		});
 
-		await step('Click sur le premier bouton', async () => {
-			await expect(canvasElement.querySelector('img')).toHaveAttribute('src', images[0].src);
+		await step('Le click sur le bouton suivant doit afficher l\'image suivante', async () => {
+			buttons[1].click();
+			await expect(canvasElement.querySelector('img')).toHaveAttribute('src', images[2].src);
+		});
+
+		await step('Le click sur le bouton précédent doit afficher l\'image précédente', async () => {
 			buttons[0].click();
-			await new Promise(r => setTimeout(r, 1000)).then(() => {
-				expect(canvasElement.querySelector('img')).toHaveAttribute('src', images[1].src);
-			});
+			await expect(canvasElement.querySelector('img')).toHaveAttribute('src', images[1].src);
 		});
 	},
 	parameters: {
