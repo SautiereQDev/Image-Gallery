@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ThumbnailProps } from '../types/thumbnail.types';
+import { ThumbnailProps } from '../types/thumbnail';
 import { getUnitHeight, getUnitWidth } from '../components/Thumbnail';
 
 export const StyledImage = styled.img <Omit<ThumbnailProps, 'onClick'>>`

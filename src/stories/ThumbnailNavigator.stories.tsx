@@ -16,10 +16,9 @@ export default meta;
 type Story = StoryObj<typeof ThumbnailNavigator>;
 
 export const Default: Story = {
-	render: (args) => <GalleryProvider storedImages={images}><Reset /><ThumbnailNavigator {...args} /></GalleryProvider>,
+	render: (args) => <GalleryProvider images={images}><Reset /><ThumbnailNavigator {...args} /></GalleryProvider>,
 	args: {
 		direction: 'horizontal',
-		nbImagesVisible: 5,
 	},
 	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement);

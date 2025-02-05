@@ -1,5 +1,6 @@
-import { ThumbnailProps } from '../types/thumbnail.types';
+import { ThumbnailProps } from '../types/thumbnail';
 import { StyledImage } from '../styles/thumbnail.styles';
+import React from 'react';
 
 export const getUnitWidth = (unit?: 'px' | 'viewport_ratio' | 'rem' | '%') => {
 	switch (unit) {
@@ -28,8 +29,8 @@ export const getUnitHeight = (unit?: 'px' | 'viewport_ratio' | 'rem' | '%') => {
 };
 
 
-export function Thumbnail(args: ThumbnailProps) {
+export const Thumbnail: React.FC<Readonly<ThumbnailProps>> = (args) => {
 	return <StyledImage {...args} />;
-}
+};
 
 export default Thumbnail;

@@ -1,20 +1,20 @@
 import React, { createContext, useMemo, useReducer } from 'react';
-import { GalleryContextData, GalleryProviderProps } from '../interfaces/galleryProvider';
+import { GalleryContextData, GalleryProviderProps } from '../types/galleryProvider';
 import { galleryReducer, getThumbnailImages } from '../reducers/imageGalleryReducer';
 
 const GalleryContext = createContext<GalleryContextData | undefined>(undefined);
 
 const GalleryProvider: React.FC<GalleryProviderProps> = ({
-																													 storedImages = [],
+																													 images = [],
 																													 activeImage = 0,
-																													 thumbnailSize = 5,
+																													 thumbnailNbElements = 5,
 																													 children,
-																												 }) => {
+																												 }: GalleryProviderProps) => {
 	const initialState = {
 		activeImage,
-		thumbnailImages: getThumbnailImages(storedImages, activeImage, thumbnailSize),
-		storedImages,
-		thumbnailSize,
+		thumbnailImages: getThumbnailImages(images, activeImage, thumbnailNbElements),
+		images: images,
+		thumbnailNbElements,
 	};
 
 	const [state, dispatch] = useReducer(galleryReducer, initialState);

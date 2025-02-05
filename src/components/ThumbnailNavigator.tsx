@@ -1,21 +1,20 @@
 import React from 'react';
 import Thumbnail from './Thumbnail';
 import { useGallery } from '../hooks/useGallery';
-import { IThumbnailNavigatorProps } from '../types/thumbnailNavgiator.types';
+import { ThumbnailNavigatorProps } from '../types/thumbnailNavgiator';
 import { StyledElement, StyledList } from '../styles/thumbnailNavigator.styles';
 
-const ThumbnailNavigator = ({
-															direction = 'horizontal',
-															nbImagesVisible = 5,
-															autoScroll = false,
-															autoScrollDelay = 5000,
-															pictureSpacing = 10,
-														}: Readonly<IThumbnailNavigatorProps>) => {
+const ThumbnailNavigator: React.FC<Readonly<ThumbnailNavigatorProps>> = ({
+																																					 direction = 'horizontal',
+																																					 autoScroll = false,
+																																					 autoScrollDelay = 5000,
+																																					 thumbnailPicturesSpacing = 10,
+																																				 }) => {
 
 	const { thumbnailImages, activeImage, dispatch } = useGallery();
 
 	return (
-		<StyledList direction={direction} gap={pictureSpacing}>
+		<StyledList direction={direction} gap={thumbnailPicturesSpacing}>
 			{thumbnailImages.map((image, index) => (
 				<StyledElement key={index}>
 					<Thumbnail src={thumbnailImages[index].src} alt={thumbnailImages[index].alt}

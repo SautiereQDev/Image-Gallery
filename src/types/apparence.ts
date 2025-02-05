@@ -1,8 +1,4 @@
-import { MouseEventHandler } from 'react';
-
-export type ThumbnailProps = {
-	src: string;
-	alt: string;
+export interface ApparenceProps {
 	width?: number;
 	height?: number;
 	border?: number;
@@ -11,5 +7,6 @@ export type ThumbnailProps = {
 	fit?: 'cover' | 'contain';
 	borderStyle?: 'solid' | 'dashed' | 'dotted';
 	unit?: 'px' | 'viewport_ratio' | 'rem' | '%';
-	onClick?: MouseEventHandler;
+	MainPictureThumbnailGap?: number,
+	thumbnailPicturesSpacing?: number
 }

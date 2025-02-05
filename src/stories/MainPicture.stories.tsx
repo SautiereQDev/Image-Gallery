@@ -15,7 +15,7 @@ export default meta;
 type Story = StoryObj<typeof MainPicture>;
 
 export const Default = {
-	render: (args) => <GalleryProvider storedImages={images}><MainPicture {...args} /></GalleryProvider>,
+	render: (args) => <GalleryProvider images={images}><MainPicture {...args} /></GalleryProvider>,
 	args: {
 		width: 300,
 		height: 300,
