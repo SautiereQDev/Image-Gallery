@@ -2,11 +2,12 @@ import { Meta, StoryObj } from '@storybook/react';
 import { ComponentProps } from 'react';
 import MainPicture from '../components/MainPicture';
 import images from '../mocks/images';
-import { expect } from '@storybook/test';
+import { expect, fireEvent } from '@storybook/test';
 import { GalleryProvider } from '../contexts/ImageGalleryContext';
 
 const meta = {
 	component: MainPicture,
+	title: 'Main picture',
 } satisfies Meta<ComponentProps<typeof MainPicture>>;
 
 export default meta;
@@ -27,17 +28,18 @@ export const Default = {
 		await step('Verification du rendu', () => {
 			expect(buttons).toHaveLength(2);
 			expect(buttons[0]).toHaveStyle({ color: '#000' });
-
 		});
 
 		await step('Le click sur le bouton suivant doit afficher l\'image suivante', async () => {
-			buttons[1].click();
-			await expect(canvasElement.querySelector('img')).toHaveAttribute('src', images[2].src);
+			await expect(canvasElement.querySelector('img')).toHaveAttribute('src', images[0].src);
+			await fireEvent.click(buttons[1]);
+			await expect(canvasElement.querySelector('img')).toHaveAttribute('src', images[1].src);
 		});
 
 		await step('Le click sur le bouton précédent doit afficher l\'image précédente', async () => {
-			buttons[0].click();
 			await expect(canvasElement.querySelector('img')).toHaveAttribute('src', images[1].src);
+			await fireEvent.click(buttons[0]);
+			await expect(canvasElement.querySelector('img')).toHaveAttribute('src', images[0].src);
 		});
 	},
 	parameters: {

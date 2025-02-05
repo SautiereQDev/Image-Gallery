@@ -6,6 +6,7 @@ import images from '../mocks/images';
 
 const meta = {
 	component: ImageGallery,
+	title: 'Image gallery',
 } satisfies Meta<ComponentProps<typeof ImageGallery>>;
 
 export default meta;

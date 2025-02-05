@@ -26,7 +26,7 @@ export const galleryReducer = (
 
 	switch (action.type) {
 		case 'NEXT_ACTIVE_IMAGE':
-			const nextIndex = adjustIndex(state.activeImage + 1, state.storedImages.length);
+			const nextIndex = adjustIndex(state.activeImage, state.storedImages.length);
 			return {
 				...state,
 				activeImage: nextIndex,

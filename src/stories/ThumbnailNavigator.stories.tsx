@@ -8,6 +8,7 @@ import Reset from '../styles/reset';
 
 const meta = {
 	component: ThumbnailNavigator,
+	title: 'Thumbnail navigator',
 } satisfies Meta<ComponentProps<typeof ThumbnailNavigator>>;
 
 export default meta;
