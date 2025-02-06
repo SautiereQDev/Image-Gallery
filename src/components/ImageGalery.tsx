@@ -19,27 +19,15 @@ export const ImageGallery: React.FC<GalleryProps> = ({
 																											 width = 1000,
 																											 height = 800,
 																										 }) => {
-	// Détermine si l'on travaille en pixels
-	const isPx = unit === 'px';
 
-	// 85% de la largeur totale pour l'image principale, 15% pour la barre de miniatures
-	const mainPictureWidthPercentage = 100;
-	const thumbnailWidthPercentage = 10;
 
-	const computedMainPictureWidth = isPx ? (width * mainPictureWidthPercentage) / 100 : mainPictureWidthPercentage;
-	const computedThumbnailWidth = isPx ? (width * thumbnailWidthPercentage) / 100 : thumbnailWidthPercentage;
-
-	// Calculer la hauteur et la largeur des miniatures
-	const thumbnailHeight = height / thumbnailNbElements;
-	const thumbnailWidth = computedThumbnailWidth;
-
+	// Si height et width sont fournis, width est prioritaire
 	return (
 		<GalleryProvider images={images} activeImage={activeImage} thumbnailNbElements={thumbnailNbElements}>
-			<Container gap={mainPictureThumbnailGap ?? 30} unit={unit} style={{ width, height }}>
+			<Container mainPictureThumbnailGap={mainPictureThumbnailGap ?? 30} unit={unit}
+								 backgroundColor={'#AEAEAE'} height={height} width={width}>
 				<Reset />
 				<MainPicture
-					width={computedMainPictureWidth}
-					height={height}
 					unit={unit}
 					buttonSize={buttonSize}
 					buttonColor={buttonColor}
@@ -48,10 +36,6 @@ export const ImageGallery: React.FC<GalleryProps> = ({
 					direction="vertical"
 					autoScroll={autoScroll}
 					thumbnailPicturesSpacing={thumbnailPicturesSpacing}
-					width={thumbnailWidth} // fixe à 15% de la largeur totale
-					height={height} // hauteur identique à l'image principale
-					imagesHeight={thumbnailHeight} // hauteur des miniatures calculée
-					imagesWidth={thumbnailWidth} // largeur des miniatures calculée
 					unit={unit}
 				/>
 			</Container>

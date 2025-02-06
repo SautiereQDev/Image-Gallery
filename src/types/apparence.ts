@@ -9,4 +9,5 @@ export interface ApparenceProps {
 	unit?: 'px' | 'viewport_ratio' | 'rem' | '%';
 	mainPictureThumbnailGap?: number,
 	thumbnailPicturesSpacing?: number
+	backgroundColor?: string;
 }

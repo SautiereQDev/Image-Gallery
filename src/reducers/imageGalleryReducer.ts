@@ -3,12 +3,12 @@ import { ImageGalleryTypes } from '../types/commons';
 
 export const getThumbnailImages = (storedImages: ImageGalleryTypes.Image[], startIndex: number, thumbnailSize: number) => {
 	const endIndex = startIndex + thumbnailSize;
-	if (endIndex <= storedImages.length) {
-		return storedImages.slice(startIndex, endIndex);
+	if (endIndex < storedImages.length) {
+		return storedImages.slice(startIndex + 1, endIndex + 1);
 	} else {
 		return [
-			...storedImages.slice(startIndex, storedImages.length),
-			...storedImages.slice(0, endIndex - storedImages.length),
+			...storedImages.slice(startIndex + 1, storedImages.length),
+			...storedImages.slice(0, endIndex + 1 - storedImages.length),
 		];
 	}
 };
