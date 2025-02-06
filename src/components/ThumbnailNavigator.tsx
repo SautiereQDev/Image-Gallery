@@ -20,6 +20,7 @@ const ThumbnailNavigator: React.FC<Readonly<ThumbnailNavigatorProps>> = ({
     const thumbnailHeight = 100; // Hauteur fixe des miniatures
     const containerHeight = height ?? containerRef.current?.clientHeight ?? 0;
     const calculatedVisibleThumbnails = Math.floor(containerHeight / (thumbnailHeight + thumbnailPicturesSpacing));
+
     if (calculatedVisibleThumbnails === 0) throw new Error('The container is too small to display any thumbnail');
 
     if (activeImage + 1 + calculatedVisibleThumbnails < images.length) {
@@ -39,7 +40,7 @@ const ThumbnailNavigator: React.FC<Readonly<ThumbnailNavigatorProps>> = ({
             alt={image.alt}
             onClick={() => dispatch({
               type: 'SET_ACTIVE_IMAGE',
-              payload: index,
+              payload: index + activeImage + 1 < images.length ? index + activeImage + 1 : index + activeImage + 1 - images.length,
             })}
           />
         </StyledElement>
