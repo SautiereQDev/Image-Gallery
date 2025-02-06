@@ -7,8 +7,8 @@ import { GalleryProvider } from '../contexts/ImageGalleryContext';
 import Reset from '../styles/reset';
 
 const meta = {
-	component: ThumbnailNavigator,
-	title: 'Thumbnail navigator',
+  component: ThumbnailNavigator,
+  title: 'Thumbnail navigator',
 } satisfies Meta<ComponentProps<typeof ThumbnailNavigator>>;
 
 export default meta;
@@ -16,21 +16,22 @@ export default meta;
 type Story = StoryObj<typeof ThumbnailNavigator>;
 
 export const Default: Story = {
-	render: (args) => <GalleryProvider images={images}><Reset /><ThumbnailNavigator {...args} /></GalleryProvider>,
-	args: {
-		direction: 'horizontal',
-	},
-	play: async ({ canvasElement, step }) => {
-		const canvas = within(canvasElement);
-		const images = canvas.getAllByRole('img') as HTMLImageElement[];
+  render: (args) => <GalleryProvider images={images}><Reset /><ThumbnailNavigator {...args} /></GalleryProvider>,
+  args: {
+    direction: 'vertical',
+    height: 1000,
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+    const images = canvas.getAllByRole('img') as HTMLImageElement[];
 
-		await step('Thumbnail navigator is rendered', () => {
-			expect(images).toHaveLength(5);
-		});
+    await step('Thumbnail navigator is rendered', () => {
+      expect(images).toHaveLength(5);
+    });
 
-		await step('The active image is not rendered', () => {
-			const activeImageElement = canvas.queryByAltText('Image 1');
-			expect(activeImageElement).not.toBeInTheDocument();
-		});
-	},
+    await step('The active image is not rendered', () => {
+      const activeImageElement = canvas.queryByAltText('Image 1');
+      expect(activeImageElement).not.toBeInTheDocument();
+    });
+  },
 };

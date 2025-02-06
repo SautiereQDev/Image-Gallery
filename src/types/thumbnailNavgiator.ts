@@ -6,4 +6,5 @@ export interface ThumbnailNavigatorProps extends ApparenceProps {
 	autoScrollDelay?: number,
 	imagesHeight?: number,
 	imagesWidth?: number,
+	nbDisplayedImages?: number,
 }

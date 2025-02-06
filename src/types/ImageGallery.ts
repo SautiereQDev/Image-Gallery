@@ -17,7 +17,5 @@ export interface GalleryProps extends MainPictureProps, ThumbnailNavigatorProps,
 
 export interface GalleryState {
 	activeImage: number;
-	thumbnailImages: ImageGalleryTypes.Image[];
 	images: ImageGalleryTypes.Image[];
-	thumbnailNbElements: number;
 }

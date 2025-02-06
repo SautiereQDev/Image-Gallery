@@ -1,4 +1,3 @@
-// src/styles/thumbnailNavigator.styles.ts
 import styled from 'styled-components';
 
 export const StyledList = styled.ul<{
@@ -12,18 +11,19 @@ export const StyledList = styled.ul<{
     gap: ${props => props.gap ?? '0'}px;
     width: ${props => props.width ?? '100'}%;
     height: ${props => props.height ?? '100'}%;
-    align-items: center; // Alignement des miniatures
+    align-items: center;
+    overflow-y: auto; // Ajout de la barre de défilement verticale
 `;
 
 export const StyledElement = styled.li<{ isActive: boolean }>`
     cursor: pointer;
     border: ${props => props.isActive ? '2px solid blue' : 'none'};
-    transition: border 0.3s ease; // Transition pour une animation fluide
+    transition: border 0.3s ease;
 `;
 
 export const ThumbnailImage = styled.img`
     object-fit: cover;
-    width: 100px; // Largeur fixe
-    height: 100px; // Hauteur fixe
-    border: 2px solid transparent; // Bordure dynamique
+    width: 100px;
+    height: 100px;
+    border: 2px solid transparent;
 `;

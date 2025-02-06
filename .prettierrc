@@ -1,22 +1,12 @@
 {
-  "printWidth": 80,
-  // Longueur maximale d'une ligne (80 à 100 caractères est un bon compromis)
+  "printWidth": 120,
   "tabWidth": 2,
-  // Indentation de 2 espaces
-  "useTabs": true,
-  // Utilise des espaces et non des tabulations
+  "useTabs": false,
   "semi": true,
-  // Ajoute un point-virgule en fin de ligne
   "singleQuote": true,
-  // Utilise les quotes simples pour les chaînes de caractères
   "trailingComma": "all",
-  // Ajoute une virgule finale dans les objets et tableaux multi-lignes
   "bracketSpacing": true,
-  // Ajoute un espace entre les accolades dans les objets : { key: value }
   "jsxBracketSameLine": false,
-  // Place le '>' de fermeture des éléments JSX sur une nouvelle ligne en cas de multi-lignes
   "arrowParens": "always",
-  // Toujours mettre les parenthèses autour des arguments de fonction fléchée
   "endOfLine": "lf"
-  // Forcer le saut de ligne LF (utile pour la compatibilité entre systèmes)
 }

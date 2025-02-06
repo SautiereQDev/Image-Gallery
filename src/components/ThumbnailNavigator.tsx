@@ -1,33 +1,51 @@
-import React from 'react';
-import Thumbnail from './Thumbnail';
+import React, { useEffect, useRef, useState } from 'react';
 import { useGallery } from '../hooks/useGallery';
 import { ThumbnailNavigatorProps } from '../types/thumbnailNavgiator';
-import { StyledElement, StyledList } from '../styles/thumbnailNavigator.styles';
+import { StyledElement, StyledList, ThumbnailImage } from '../styles/thumbnailNavigator.styles';
+import { ImageGalleryTypes } from '../types/commons';
 
 const ThumbnailNavigator: React.FC<Readonly<ThumbnailNavigatorProps>> = ({
-																																					 direction = 'horizontal',
-																																					 autoScroll = false,
-																																					 autoScrollDelay = 5000,
-																																					 thumbnailPicturesSpacing = 10,
-																																					 width,
-																																					 height,
-																																				 }) => {
+                                                                           direction = 'vertical',
+                                                                           autoScroll = false,
+                                                                           autoScrollDelay = 5000,
+                                                                           thumbnailPicturesSpacing = 10,
+                                                                           width,
+                                                                           height,
+                                                                         }) => {
+  const { images, activeImage, dispatch } = useGallery();
+  const [visibleThumbnails, setVisibleThumbnails] = useState<ImageGalleryTypes.Image[]>([]);
+  const containerRef = useRef<HTMLUListElement>(null);
 
-	const { thumbnailImages, activeImage, dispatch } = useGallery();
+  useEffect(() => {
+    const thumbnailHeight = 100; // Hauteur fixe des miniatures
+    const containerHeight = height ?? containerRef.current?.clientHeight ?? 0;
+    const calculatedVisibleThumbnails = Math.floor(containerHeight / (thumbnailHeight + thumbnailPicturesSpacing));
+    if (calculatedVisibleThumbnails === 0) throw new Error('The container is too small to display any thumbnail');
 
-	return (
-		<StyledList direction={direction} gap={thumbnailPicturesSpacing} width={width} height={height}>
-			{thumbnailImages.map((image, index) => (
-				<StyledElement key={index}>
-					<Thumbnail src={thumbnailImages[index].src} alt={thumbnailImages[index].alt}
-										 unit={'viewport_ratio'} onClick={() => dispatch({
-						type: 'SET_ACTIVE_IMAGE',
-						payload: activeImage + index,
-					})} />
-				</StyledElement>
-			))}
-		</StyledList>
-	);
+    if (activeImage + calculatedVisibleThumbnails <= images.length) {
+      setVisibleThumbnails(images.slice(activeImage, calculatedVisibleThumbnails + activeImage));
+    } else {
+      setVisibleThumbnails([...images.slice(activeImage, images.length), ...images.slice(0, calculatedVisibleThumbnails - (images.length - activeImage))]);
+    }
+
+  }, [height, thumbnailPicturesSpacing, activeImage]);
+
+  return (
+    <StyledList ref={containerRef} direction={direction} gap={thumbnailPicturesSpacing} width={width} height={height}>
+      {visibleThumbnails.map((image, index) => (
+        <StyledElement key={index} isActive={activeImage === index}>
+          <ThumbnailImage
+            src={image.src}
+            alt={image.alt}
+            onClick={() => dispatch({
+              type: 'SET_ACTIVE_IMAGE',
+              payload: index,
+            })}
+          />
+        </StyledElement>
+      ))}
+    </StyledList>
+  );
 };
 
 export default ThumbnailNavigator;
