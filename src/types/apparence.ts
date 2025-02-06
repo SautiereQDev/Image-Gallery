@@ -7,6 +7,7 @@ export interface ApparenceProps {
 	fit?: 'cover' | 'contain';
 	borderStyle?: 'solid' | 'dashed' | 'dotted';
 	unit?: 'px' | 'viewport_ratio' | 'rem' | '%';
-	MainPictureThumbnailGap?: number,
+	mainPictureThumbnailGap?: number,
 	thumbnailPicturesSpacing?: number
+	backgroundColor?: string;
 }

@@ -1,11 +1,12 @@
+// src/styles/mainPicture.styles.ts
 import styled from 'styled-components';
-import { getUnitWidth } from '../components/Thumbnail';
+import { ApparenceProps } from '../types/apparence';
 
-export const Container = styled.div<{ width: number, height: number, unit: 'px' | 'viewport_ratio' | 'rem' | '%' }>`
-    display: flex;
+export const Container = styled.div<ApparenceProps>`
+    display: inline-block;
     position: relative;
-    width: ${props => props.width}${props => getUnitWidth(props.unit)};
-    height: ${props => props.height}${props => getUnitWidth(props.unit)};
+    object-fit: contain;
+    max-width: 100%;
 `;
 
 export const button = styled.button`
@@ -15,16 +16,16 @@ export const button = styled.button`
     background: transparent;
     border: none;
     cursor: pointer;
-    width: 10%; /* Ajustez la largeur pour qu'elle soit proportionnelle à l'image */
-    height: auto; /* Laissez la hauteur s'ajuster automatiquement */
+    width: 10%;
+    height: auto;
 `;
 
 // TODO: ajouter un shadow sur les bouttons pour les faire ressortir
 
 export const ButtonLeft = styled(button)`
-    left: 0; /* Positionnez le bouton à gauche */
+    left: 0;
 `;
 
 export const ButtonRight = styled(button)`
-    right: 0; /* Positionnez le bouton à droite */
+    right: 0;
 `;

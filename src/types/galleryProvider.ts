@@ -9,7 +9,6 @@ export interface GalleryContextData extends GalleryState {
 export interface GalleryProviderProps {
 	children: ReactNode;
 	activeImage?: number;
-	thumbnailImages?: ImageGalleryTypes.Image[];
 	images: ImageGalleryTypes.Image[];
 	thumbnailNbElements?: number;
 }
