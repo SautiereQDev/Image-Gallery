@@ -22,10 +22,10 @@ const ThumbnailNavigator: React.FC<Readonly<ThumbnailNavigatorProps>> = ({
     const calculatedVisibleThumbnails = Math.floor(containerHeight / (thumbnailHeight + thumbnailPicturesSpacing));
     if (calculatedVisibleThumbnails === 0) throw new Error('The container is too small to display any thumbnail');
 
-    if (activeImage + calculatedVisibleThumbnails <= images.length) {
-      setVisibleThumbnails(images.slice(activeImage, calculatedVisibleThumbnails + activeImage));
+    if (activeImage + 1 + calculatedVisibleThumbnails < images.length) {
+      setVisibleThumbnails(images.slice(activeImage + 1, calculatedVisibleThumbnails + activeImage + 1));
     } else {
-      setVisibleThumbnails([...images.slice(activeImage, images.length), ...images.slice(0, calculatedVisibleThumbnails - (images.length - activeImage))]);
+      setVisibleThumbnails([...images.slice(activeImage + 1, images.length), ...images.slice(0, calculatedVisibleThumbnails + 1 - (images.length - activeImage))]);
     }
 
   }, [height, thumbnailPicturesSpacing, activeImage]);
