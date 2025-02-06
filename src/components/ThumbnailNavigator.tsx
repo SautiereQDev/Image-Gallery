@@ -9,12 +9,14 @@ const ThumbnailNavigator: React.FC<Readonly<ThumbnailNavigatorProps>> = ({
 																																					 autoScroll = false,
 																																					 autoScrollDelay = 5000,
 																																					 thumbnailPicturesSpacing = 10,
+																																					 width,
+																																					 height,
 																																				 }) => {
 
 	const { thumbnailImages, activeImage, dispatch } = useGallery();
 
 	return (
-		<StyledList direction={direction} gap={thumbnailPicturesSpacing}>
+		<StyledList direction={direction} gap={thumbnailPicturesSpacing} width={width} height={height}>
 			{thumbnailImages.map((image, index) => (
 				<StyledElement key={index}>
 					<Thumbnail src={thumbnailImages[index].src} alt={thumbnailImages[index].alt}

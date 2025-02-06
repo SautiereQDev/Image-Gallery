@@ -9,8 +9,9 @@ export type GalleryAction =
 	| { type: 'SET_ACTIVE_IMAGE', payload: number }
 
 
-export interface GalleryProps extends ImageGalleryTypes.OmitBasicApparence<MainPictureProps>, ImageGalleryTypes.OmitBasicApparence<ThumbnailNavigatorProps>, GalleryProviderProps {
+export interface GalleryProps extends MainPictureProps, ThumbnailNavigatorProps, GalleryProviderProps {
 	mainPictureSize: number;
+	mainPictureThumbnailGap: number;
 	thumbnailPicturesSize: number;
 }
 

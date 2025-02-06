@@ -15,9 +15,20 @@ type Story = StoryObj<typeof ImageGallery>;
 
 export const Default = {
 	args: {
-        images: images,
-        thumbnailNbElements: 7
-    },
+		images,
+		activeImage: 0,
+		thumbnailNbElements: 3,
+		autoScroll: false,
+		thumbnailPicturesSpacing: 10,
+		mainPictureThumbnailGap: 30,
+		thumbnailPicturesSize: 150,
+		mainPictureSize: 300,
+		unit: 'px',
+		buttonColor: '#FFF',
+		buttonSize: 30,
+		width: 600,
+		height: 400,
+	},
 	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement);
 

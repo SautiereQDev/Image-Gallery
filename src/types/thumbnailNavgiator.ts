@@ -1,7 +1,6 @@
 import { ApparenceProps } from './apparence';
-import { ImageGalleryTypes } from './commons';
 
-export interface ThumbnailNavigatorProps extends ImageGalleryTypes.OmitBasicApparence<ApparenceProps> {
+export interface ThumbnailNavigatorProps extends ApparenceProps {
 	direction?: 'vertical' | 'horizontal',
 	autoScroll?: boolean,
 	autoScrollDelay?: number,
