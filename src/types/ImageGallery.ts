@@ -1,6 +1,6 @@
 import { MainPictureProps } from './mainPicture';
 import { ThumbnailNavigatorProps } from './thumbnailNavgiator';
-import { ImageGalleryTypes } from './commons';
+import { Image } from './commons';
 import { GalleryProviderProps } from './galleryProvider';
 
 export type GalleryAction =
@@ -17,5 +17,5 @@ export interface GalleryProps extends MainPictureProps, ThumbnailNavigatorProps,
 
 export interface GalleryState {
 	activeImage: number;
-	images: ImageGalleryTypes.Image[];
+	images: Image[];
 }

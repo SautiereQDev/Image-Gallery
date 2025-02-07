@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { ComponentProps } from 'react';
+import  React, { ComponentProps } from 'react';
 import { expect, within } from '@storybook/test';
 import ThumbnailNavigator from '../components/ThumbnailNavigator';
 import { images } from '../mocks/images';

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useGallery } from '../hooks/useGallery';
 import { ThumbnailNavigatorProps } from '../types/thumbnailNavgiator';
 import { StyledElement, StyledList, ThumbnailImage } from '../styles/thumbnailNavigator.styles';
-import { ImageGalleryTypes } from '../types/commons';
+import {Image} from '../types/commons';
 
 const ThumbnailNavigator: React.FC<Readonly<ThumbnailNavigatorProps>> = ({
   direction = 'vertical',
@@ -12,7 +12,7 @@ const ThumbnailNavigator: React.FC<Readonly<ThumbnailNavigatorProps>> = ({
   height,
 }) => {
   const { images, activeImage, dispatch } = useGallery();
-  const [visibleThumbnails, setVisibleThumbnails] = useState<ImageGalleryTypes.Image[]>([]);
+  const [visibleThumbnails, setVisibleThumbnails] = useState<Image[]>([]);
   const containerRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {

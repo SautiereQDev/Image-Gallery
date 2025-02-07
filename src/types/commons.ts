@@ -1,9 +1,6 @@
-export namespace ImageGalleryTypes {
-	export type Image = {
-		src: string,
-		alt: string,
-	};
+export type Image = {
+  src: string,
+  alt: string,
+};
 
-	export type OmitBasicApparence<T> = Omit<T, 'width' | 'height'>;
-}
-
+export type OmitBasicApparence<T> = Omit<T, 'width' | 'height'>;
