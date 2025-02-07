@@ -5,13 +5,12 @@ import { StyledElement, StyledList, ThumbnailImage } from '../styles/thumbnailNa
 import { ImageGalleryTypes } from '../types/commons';
 
 const ThumbnailNavigator: React.FC<Readonly<ThumbnailNavigatorProps>> = ({
-                                                                           direction = 'vertical',
-                                                                           autoScroll = false,
-                                                                           autoScrollDelay = 5000,
-                                                                           thumbnailPicturesSpacing = 10,
-                                                                           width,
-                                                                           height,
-                                                                         }) => {
+  direction = 'vertical',
+  autoScroll = false,
+  autoScrollDelay = 5000,
+  thumbnailPicturesSpacing = 10,
+  height,
+}) => {
   const { images, activeImage, dispatch } = useGallery();
   const [visibleThumbnails, setVisibleThumbnails] = useState<ImageGalleryTypes.Image[]>([]);
   const containerRef = useRef<HTMLUListElement>(null);
@@ -26,22 +25,30 @@ const ThumbnailNavigator: React.FC<Readonly<ThumbnailNavigatorProps>> = ({
     if (activeImage + 1 + calculatedVisibleThumbnails < images.length) {
       setVisibleThumbnails(images.slice(activeImage + 1, calculatedVisibleThumbnails + activeImage + 1));
     } else {
-      setVisibleThumbnails([...images.slice(activeImage + 1, images.length), ...images.slice(0, calculatedVisibleThumbnails + 1 - (images.length - activeImage))]);
+      setVisibleThumbnails([
+        ...images.slice(activeImage + 1, images.length),
+        ...images.slice(0, calculatedVisibleThumbnails + 1 - (images.length - activeImage)),
+      ]);
     }
-
   }, [height, thumbnailPicturesSpacing, activeImage]);
 
   return (
-    <StyledList ref={containerRef} direction={direction} gap={thumbnailPicturesSpacing} width={width} height={height}>
+    <StyledList ref={containerRef} direction={direction} gap={thumbnailPicturesSpacing} height={height}>
       {visibleThumbnails.map((image, index) => (
         <StyledElement key={index} isActive={activeImage === index}>
           <ThumbnailImage
             src={image.src}
             alt={image.alt}
-            onClick={() => dispatch({
-              type: 'SET_ACTIVE_IMAGE',
-              payload: index + activeImage + 1 < images.length ? index + activeImage + 1 : index + activeImage + 1 - images.length,
-            })}
+            onClick={() =>
+              dispatch({
+                type: 'SET_ACTIVE_IMAGE',
+                payload:
+                  index + activeImage + 1 < images.length
+                    ? index + activeImage + 1
+                    : index + activeImage + 1 - images.length,
+              })
+            }
+            borderRadius={20}
           />
         </StyledElement>
       ))}
