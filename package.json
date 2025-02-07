@@ -4,13 +4,14 @@
   "module": "dist/index.esm.js",
   "description": "React image gallery module",
   "license": "GPL-3.0-or-later",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "author": "Quentin Sautière (SautiereQDev)",
   "type": "module",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SautiereQDev/Image-Gallery.git"
+  },
   "scripts": {
     "build": "rollup -c",
     "storybook": "storybook dev -p 6006",
@@ -70,5 +71,5 @@
     "styled-components": "^6.1.14",
     "vite": "^6.0.11"
   },
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+  "packageManager": "npm"
 }
