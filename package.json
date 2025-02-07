@@ -5,7 +5,7 @@
   "description": "React image gallery module",
   "license": "GPL-3.0-or-later",
   "publishConfig": {
-    "registry": "https://github.com/SautiereQDev/Image-Gallery"
+    "registry": "https://npm.pkg.github.com"
   },
   "author": "Quentin Sautière (SautiereQDev)",
   "type": "module",
