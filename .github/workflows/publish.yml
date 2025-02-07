@@ -2,8 +2,8 @@ name: Publish to npm
 
 on:
   push:
-      branches:
-        - master
+    branches:
+      - master
 
 jobs:
   publish:
@@ -23,10 +23,19 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Increment version
+        run: npm version patch # Incrémente la version patch (ou utilisez `minor` ou `major` selon vos besoins)
+
       - name: Build package
-        run: npm run build # Assurez-vous que votre package se compile correctement
+        run: npm run build
 
       - name: Publish to npm
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Push changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git push --follow-tags
