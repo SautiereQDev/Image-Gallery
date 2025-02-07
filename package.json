@@ -1,5 +1,5 @@
 {
-  "name": "@sautiereqdev/image-gallery",
+  "name": "@momopa/image-gallery",
   "version": "1.0.0",
   "module": "dist/index.esm.js",
   "description": "React image gallery module",
