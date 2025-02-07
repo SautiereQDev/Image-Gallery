@@ -7,43 +7,60 @@ import { Container } from '../styles/imageGallery.styles';
 import { GalleryProps } from '../types/ImageGallery';
 
 export const ImageGallery: React.FC<GalleryProps> = ({
-                                                       images,
-                                                       activeImage,
-                                                       autoScroll = false,
-                                                       thumbnailPicturesSpacing,
-                                                       mainPictureThumbnailGap = 10,
-                                                       unit = 'px', // Peut être 'px', '%', etc.
-                                                       buttonColor = '#FFF',
-                                                       buttonSize = 30,
-                                                       width = 1000,
-                                                       height = 800,
-                                                     }) => {
-
-
-  const mainPictureRef = useRef<HTMLUListElement>(null);
-  const [mainPictureHeight, setMainPictureHeight] = useState<number>(0);
+  images,
+  activeImage,
+  autoScroll = false,
+  thumbnailPicturesSpacing,
+  mainPictureThumbnailGap = 10,
+  unit = 'px', // Peut être 'px', '%', etc.
+  buttonColor = '#FFF',
+  buttonSize = 30,
+  width,
+  height = 800,
+  direction = 'vertical',
+}) => {
+  const mainPictureRef = useRef<HTMLDivElement>(null);
+  const [mainPictureWidth, setMainPictureWidth] = useState<number>(0);
 
   useEffect(() => {
-    setMainPictureHeight(mainPictureRef.current?.clientHeight ?? 0);
-  }, [width, height]);
+    const updateWidth = () => {
+      if (mainPictureRef.current) {
+        setMainPictureWidth(mainPictureRef.current.getBoundingClientRect().width);
+      }
+    };
+
+    updateWidth();
+
+    const resizeObserver = new ResizeObserver(() => {
+      updateWidth();
+    });
+
+    if (mainPictureRef.current) {
+      resizeObserver.observe(mainPictureRef.current);
+    }
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, [activeImage, images, width, height, direction, mainPictureThumbnailGap, unit]);
 
   // Si height et width sont fournis, width est prioritaire
   return (
     <GalleryProvider images={images} activeImage={activeImage}>
-      <Container mainPictureThumbnailGap={mainPictureThumbnailGap ?? 30} unit={unit}
-                 backgroundColor={'#AEAEAE'} height={height} width={width}>
+      <Container
+        mainPictureThumbnailGap={mainPictureThumbnailGap ?? 30}
+        unit={unit}
+        backgroundColor={'#AEAEAE'}
+        height={height}
+        mainPictureWidth={mainPictureWidth}
+      >
         <Reset />
-        <MainPicture
-          unit={unit}
-          buttonSize={buttonSize}
-          buttonColor={buttonColor}
-        />
+        <MainPicture unit={unit} buttonSize={buttonSize} buttonColor={buttonColor} ref={mainPictureRef} />
         <ThumbnailNavigator
           direction="vertical"
           autoScroll={autoScroll}
           thumbnailPicturesSpacing={thumbnailPicturesSpacing}
           unit={unit}
-          height={height ?? mainPictureHeight}
         />
       </Container>
     </GalleryProvider>

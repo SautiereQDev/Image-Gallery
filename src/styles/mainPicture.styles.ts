@@ -1,9 +1,7 @@
-// src/styles/mainPicture.styles.ts
 import styled from 'styled-components';
 import { ApparenceProps } from '../types/apparence';
 
 export const Container = styled.div<ApparenceProps>`
-    display: inline-block;
     position: relative;
     object-fit: contain;
     max-width: 100%;
