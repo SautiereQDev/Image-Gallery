@@ -1,6 +1,6 @@
 import { Dispatch, ReactNode } from 'react';
 import { GalleryAction, GalleryState } from './ImageGallery';
-import { ImageGalleryTypes } from './commons';
+import { Image } from './commons';
 
 export interface GalleryContextData extends GalleryState {
 	dispatch: Dispatch<GalleryAction>;
@@ -9,6 +9,6 @@ export interface GalleryContextData extends GalleryState {
 export interface GalleryProviderProps {
 	children: ReactNode;
 	activeImage?: number;
-	images: ImageGalleryTypes.Image[];
+	images: Image[];
 	thumbnailNbElements?: number;
 }

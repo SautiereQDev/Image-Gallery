@@ -8,7 +8,7 @@
     "skipLibCheck": true,
     "target": "ESNext",
     "module": "ESNext",
-    "--lib": ["esnext", "dom", "dom.iterable", "scriptHost"],
+    "lib": ["esnext", "dom", "dom.iterable", "scriptHost"],
     "outDir": "dist",
     "declarationDir": "dist/types",
     "declaration": true,
